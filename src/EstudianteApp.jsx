@@ -9,13 +9,13 @@ export const EstudiantesApp = () => {
     const [estudiantes, setEstudiantes] = useState([]);
     const [estudianteEditar, setEstudianteEditar] = useState(null);
     const [busqueda, setBusqueda] = useState("");
-
+                          
+    
     const agregarEstudiante = (estudiante) => {
         const existeEstudiante = estudiantes.some((element) => element.id === estudiante.id);
         if (existeEstudiante) {
             window.alert("¡El estudiante con este ID ya existe!");
         } else {
-
             setEstudiantes([...estudiantes, estudiante]);
         }
     }
