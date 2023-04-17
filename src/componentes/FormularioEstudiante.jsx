@@ -4,6 +4,7 @@ export const FormularioEstudiante = ({ agregar, estudianteEditar, actualizarEstu
     const [id, setId] = useState("");
     const [nombre, setNombre] = useState("");
     const [semestre, setSemestre] = useState("");
+    const [facultad, setFacultad] = useState("");
     const [editando, setEditando] = useState(false);
 
     useEffect(() => {
@@ -12,6 +13,7 @@ export const FormularioEstudiante = ({ agregar, estudianteEditar, actualizarEstu
             setId(estudianteEditar.id);
             setNombre(estudianteEditar.nombre);
             setSemestre(estudianteEditar.semestre);
+            setFacultad(estudianteEditar.facultad);
         }
     }, [estudianteEditar]);
 
@@ -21,7 +23,8 @@ export const FormularioEstudiante = ({ agregar, estudianteEditar, actualizarEstu
         let estudiante = {
             id: id,
             nombre: nombre,
-            semestre: semestre
+            semestre: semestre,
+            facultad: facultad
         }
 
         if (editando) {
@@ -34,6 +37,7 @@ export const FormularioEstudiante = ({ agregar, estudianteEditar, actualizarEstu
         setId("");
         setNombre("");
         setSemestre("");
+        setFacultad("");
     }
 
     return (
@@ -41,16 +45,43 @@ export const FormularioEstudiante = ({ agregar, estudianteEditar, actualizarEstu
             <form onSubmit={guardarEstudiante}>
                 <div className="form-group ">
                     <label htmlFor="id">ID Estudiante</label>
-                    <input type="number" className="form-control" id="id" placeholder="Ingrese id" value={id} onChange={(event) => setId(event.target.value)} disabled={editando} />
+                    <br />
+                    <label htmlFor="id">El ID es único y no se podra editar una vez digitado</label>
+                    <input type="number" className="form-control" id="id" placeholder="Ingrese id" min={"100000"} max={"9999999999"}  required value={id} onChange={(event) => setId(event.target.value)} disabled={editando} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="nombre">Nombre</label>
-                    <input type="text" className="form-control" id="nombre" placeholder="nombre" value={nombre} onChange={(event) => setNombre(event.target.value)} />
+                    <input type="text" className="form-control" id="nombre" placeholder="nombre" minlength = "3" value={nombre} required onChange={(event) => setNombre(event.target.value)} />
                 </div>
-                <div className="form-group">
-                    <label htmlFor="semestre">Semestre</label>
-                    <input type="number" className="form-control" id="semestre" placeholder="semestre" value={semestre} onChange={(event) => setSemestre(event.target.value)} />
+                <div>
+                    <label for="semestre-select">Semestre: </label>
+                    <select class="form-select" name="semestre" id="semestre-select" required value={semestre} onChange={(event) => setSemestre(event.target.value)}>
+                        <option value="">--Seleccione--</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                </select>
+                </div> 
+                <br />
+                <div>
+                    <label for="facultad-select">Facultad: </label>
+                    <select class="form-select" name="facultad" id="facultad-select" required value={facultad} onChange={(event) => setFacultad(event.target.value)}>
+                        <option value="">--Seleccione--</option>
+                        <option value="Ingenieria">Ingenieria</option>
+                        <option value="Medicina">Medicina</option>
+                        <option value="Comunicacion">Comunicacion</option>
+                        <option value="Educacion">Educacion</option>
+                        <option value="Derecho">Derecho</option>                        
+                </select>
                 </div>
+                
                 <br />
                 <button type="submit" class="btn btn-success">{editando ? "Actualizar" : "Registrar"}</button>
 
