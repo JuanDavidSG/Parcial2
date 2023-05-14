@@ -63,7 +63,7 @@ export const EstudiantesApp = () => {
             return estudiantes;
         } else {
             const estudiantesFiltrados = estudiantes.filter((est) =>
-                est.facultad.toLowerCase().includes(busqueda.toLowerCase())
+                est.facultad && est.facultad.toLowerCase().includes(busqueda.toLowerCase())
             );
             return estudiantesFiltrados;
         }
