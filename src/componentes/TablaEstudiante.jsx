@@ -8,7 +8,7 @@ export const TablaEstudiante = ({ listaEstudiantes, editarEstudiante, eliminarEs
 
     const filtrarEstudiantes = (estudiantes, filtroFacultad) => {
         return estudiantes.filter((estudiante) =>
-            estudiante.nombre.toLowerCase().includes(filtroFacultad.toLowerCase())
+            estudiante.facultad.toLowerCase().includes(filtroFacultad.toLowerCase())
         );
     };
 

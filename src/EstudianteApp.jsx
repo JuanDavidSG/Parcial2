@@ -4,6 +4,7 @@ import { TablaEstudiante } from "./componentes/TablaEstudiante";
 import { getEstudiantes } from "./peticiones/getEstudiantes";
 import { postEstudiantes } from "./peticiones/postEstudiantes";
 import { deleteEstudiantes } from "./peticiones/deleteEstudiantes";
+import { editEstudiantes } from "./peticiones/editEstudiantes";
 
 
 
@@ -12,24 +13,30 @@ export const EstudiantesApp = () => {
     const [estudiantes, setEstudiantes] = useState([]);
     const [estudianteEditar, setEstudianteEditar] = useState(null);
     const [busqueda, setBusqueda] = useState("");
-                          
-    
+
+
     const agregarEstudiante = (estudiante) => {
         const existeEstudiante = estudiantes.some((element) => element.id === estudiante.id);
         if (existeEstudiante) {
             window.alert("¡El estudiante con este ID ya existe!");
         } else {
-         //   setEstudiantes([...estudiantes, estudiante]);
+            //   setEstudiantes([...estudiantes, estudiante]);
             postEstudiantes(estudiante);
         }
     }
 
     const eliminarEstudiante = (id) => {
-        const isEliminar = window.confirm(`Desea eliminar el estudiante con id: ${id}`)
+        const isEliminar = window.confirm(`Desea eliminar el estudiante con id: ${id}`);
 
         if (isEliminar) {
-            const filterEstudiantes = estudiantes.filter(est => est.id !== id)
-            deleteEstudiantes(filterEstudiantes);
+            deleteEstudiantes(id)
+                .then(response => {
+                    const filterEstudiantes = estudiantes.filter(est => est.id !== id);
+                    setEstudiantes(filterEstudiantes);
+                })
+                .catch(error => {
+                    console.error(`Error eliminando estudiante con id ${id}: ${error}`);
+                });
         }
     }
 
@@ -38,12 +45,17 @@ export const EstudiantesApp = () => {
     }
 
     const actualizarEstudiante = (estudiante) => {
-        const indice = estudiantes.findIndex((est) => est.id === estudiante.id);
-        const nuevosEstudiantes = [...estudiantes];
-        nuevosEstudiantes[indice] = estudiante;
-        setEstudiantes(nuevosEstudiantes);
-        console.log(nuevosEstudiantes)
-        setEstudianteEditar(null);
+        editEstudiantes(estudiante)
+            .then(data => {
+                const indice = estudiantes.findIndex((est) => est.id === estudiante.id);
+                const nuevosEstudiantes = [...estudiantes];
+                nuevosEstudiantes[indice] = data;
+                setEstudiantes(nuevosEstudiantes);
+                setEstudianteEditar(null);
+            })
+            .catch(error => {
+                console.error(error);
+            });
     };
 
     const filtrarEstudiantes = (estudiantes, busqueda) => {
@@ -51,7 +63,7 @@ export const EstudiantesApp = () => {
             return estudiantes;
         } else {
             const estudiantesFiltrados = estudiantes.filter((est) =>
-                est.nombre.toLowerCase().includes(busqueda.toLowerCase())
+                est.facultad.toLowerCase().includes(busqueda.toLowerCase())
             );
             return estudiantesFiltrados;
         }
@@ -62,11 +74,12 @@ export const EstudiantesApp = () => {
     const cargueEstudiantes = async () => {
         const datos = await getEstudiantes()
         setEstudiantes(datos);
-    } 
+    }
 
-    useEffect(()=>{
+    useEffect(() => {
         cargueEstudiantes();
-    },[])
+    }, [])
+
 
     return (
         <>

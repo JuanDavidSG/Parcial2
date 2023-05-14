@@ -45,7 +45,8 @@ export const FormularioEstudiante = ({ agregar, estudianteEditar, actualizarEstu
 
     return (
         <>
-            <form onSubmit={guardarEstudiante}>                
+            <h1 class="text-danger" ><center>SIGA ACADÉMICO </center> </h1>
+            <form onSubmit={guardarEstudiante}>         
                 <div className="form-group">
                     <label htmlFor="nombre">Nombre</label>
                     <input type="text" className="form-control" id="nombre" placeholder="nombre" minlength = "3" value={nombre} required onChange={(event) => setNombre(event.target.value)} />
