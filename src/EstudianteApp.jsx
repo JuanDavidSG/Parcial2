@@ -29,7 +29,7 @@ export const EstudiantesApp = () => {
         const isEliminar = window.confirm(`Desea eliminar el estudiante con id: ${id}`);
 
         if (isEliminar) {
-            deleteEstudiantes(id)
+            deleteEstudiantes(id) 
                 .then(response => {
                     const filterEstudiantes = estudiantes.filter(est => est.id !== id);
                     setEstudiantes(filterEstudiantes);
