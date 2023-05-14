@@ -51,7 +51,7 @@ export const EstudiantesApp = () => {
                 const nuevosEstudiantes = [...estudiantes];
                 nuevosEstudiantes[indice] = data;
                 setEstudiantes(nuevosEstudiantes);
-                setEstudianteEditar(null );
+                setEstudianteEditar(null);
             })
             .catch(error => {
                 console.error(error);

@@ -1,8 +1,8 @@
 import { useState } from "react"
 
-export const TablaEstudiante = ({ listaEstudiantes, editarEstudiante, eliminarEstudiante}) => {
+export const TablaEstudiante = ({ listaEstudiantes, editarEstudiante, eliminarEstudiante }) => {
 
-   
+
 
     const [filtroFacultad, setFiltroFacultad] = useState("");
 
