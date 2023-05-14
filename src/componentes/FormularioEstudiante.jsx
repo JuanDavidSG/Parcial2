@@ -46,10 +46,10 @@ export const FormularioEstudiante = ({ agregar, estudianteEditar, actualizarEstu
     return (
         <>
             <h1 class="text-danger" ><center>SIGA ACADÉMICO </center> </h1>
-            <form onSubmit={guardarEstudiante}>         
+            <form onSubmit={guardarEstudiante}>
                 <div className="form-group">
                     <label htmlFor="nombre">Nombre</label>
-                    <input type="text" className="form-control" id="nombre" placeholder="nombre" minlength = "3" value={nombre} required onChange={(event) => setNombre(event.target.value)} />
+                    <input type="text" className="form-control" id="nombre" placeholder="nombre" minlength="3" value={nombre} required onChange={(event) => setNombre(event.target.value)} />
                 </div>
                 <div>
                     <label for="semestre-select">Semestre: </label>
@@ -65,8 +65,8 @@ export const FormularioEstudiante = ({ agregar, estudianteEditar, actualizarEstu
                         <option value="8">8</option>
                         <option value="9">9</option>
                         <option value="10">10</option>
-                </select>
-                </div> 
+                    </select>
+                </div>
                 <br />
                 <div>
                     <label for="facultad-select">Facultad: </label>
@@ -76,8 +76,8 @@ export const FormularioEstudiante = ({ agregar, estudianteEditar, actualizarEstu
                         <option value="Medicina">Medicina</option>
                         <option value="Comunicacion">Comunicacion</option>
                         <option value="Educacion">Educacion</option>
-                        <option value="Derecho">Derecho</option>                        
-                </select>
+                        <option value="Derecho">Derecho</option>
+                    </select>
                 </div>
                 <br />
                 <div>
@@ -86,19 +86,19 @@ export const FormularioEstudiante = ({ agregar, estudianteEditar, actualizarEstu
                         <option value="">--Seleccione--</option>
                         <option value="Ingenieria Informática">Ingenieria Informática</option>
                         <option value="Ingenieria Química">Ingenieria Química</option>
-                        <option value="Ingenieria Mecánica">Ingenieria Mecánica</option>     
+                        <option value="Ingenieria Mecánica">Ingenieria Mecánica</option>
                         <option value="Medicina">Medicina</option>
-                        <option value="Fisioterapia">Fisioterapia</option>       
-                        <option value="Enfermería">Enfermería</option>   
-                        <option value="Comunicación Social">Comunicación Social</option>  
-                        <option value="Comunicación Audiovisual">Comunicación Audiovisual</option>     
-                        <option value="Educacion Ciencias Naturales">Educacion Ciencias Naturales</option> 
-                        <option value="Filosofía">Filosofía</option>      
-                        <option value="Derecho">Derecho</option>                
-                </select>
+                        <option value="Fisioterapia">Fisioterapia</option>
+                        <option value="Enfermería">Enfermería</option>
+                        <option value="Comunicación Social">Comunicación Social</option>
+                        <option value="Comunicación Audiovisual">Comunicación Audiovisual</option>
+                        <option value="Educacion Ciencias Naturales">Educacion Ciencias Naturales</option>
+                        <option value="Filosofía">Filosofía</option>
+                        <option value="Derecho">Derecho</option>
+                    </select>
                 </div>
 
-                
+
                 <br />
                 <button type="submit" class="btn btn-success">{editando ? "Actualizar" : "Registrar"}</button>
 
