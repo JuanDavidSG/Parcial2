@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import { FormularioEstudiante } from "./componentes/FormularioEstudiante";
 import { TablaEstudiante } from "./componentes/TablaEstudiante";
 import { getEstudiantes } from "./peticiones/getEstudiantes";
+import { postEstudiantes } from "./peticiones/postEstudiantes";
+import { deleteEstudiantes } from "./peticiones/deleteEstudiantes";
 
 
 
@@ -17,7 +19,8 @@ export const EstudiantesApp = () => {
         if (existeEstudiante) {
             window.alert("¡El estudiante con este ID ya existe!");
         } else {
-            setEstudiantes([...estudiantes, estudiante]);
+         //   setEstudiantes([...estudiantes, estudiante]);
+            postEstudiantes(estudiante);
         }
     }
 
@@ -26,7 +29,7 @@ export const EstudiantesApp = () => {
 
         if (isEliminar) {
             const filterEstudiantes = estudiantes.filter(est => est.id !== id)
-            setEstudiantes(filterEstudiantes);
+            deleteEstudiantes(filterEstudiantes);
         }
     }
 
