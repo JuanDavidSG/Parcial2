@@ -8,7 +8,7 @@ export const TablaEstudiante = ({ listaEstudiantes, editarEstudiante, eliminarEs
 
     const filtrarEstudiantes = (estudiantes, filtroFacultad) => {
         return estudiantes.filter((estudiante) =>
-            estudiante.facultad.toLowerCase().includes(filtroFacultad.toLowerCase())
+            estudiante.nombre.toLowerCase().includes(filtroFacultad.toLowerCase())
         );
     };
 
@@ -34,6 +34,7 @@ export const TablaEstudiante = ({ listaEstudiantes, editarEstudiante, eliminarEs
                         <th scope="col">Nombre</th>
                         <th scope="col">Semestre</th>
                         <th scope="col">Facultad</th>
+                        <th scope="col">Programa</th>
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
@@ -44,6 +45,7 @@ export const TablaEstudiante = ({ listaEstudiantes, editarEstudiante, eliminarEs
                             <td>{estudiante.nombre}</td>
                             <td>{estudiante.semestre}</td>
                             <td>{estudiante.facultad}</td>
+                            <td>{estudiante.programa}</td>
                             <td>
                                 <button
                                     className="btn btn-info me-2"

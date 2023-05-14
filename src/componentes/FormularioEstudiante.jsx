@@ -5,6 +5,7 @@ export const FormularioEstudiante = ({ agregar, estudianteEditar, actualizarEstu
     const [nombre, setNombre] = useState("");
     const [semestre, setSemestre] = useState("");
     const [facultad, setFacultad] = useState("");
+    const [programa, setPrograma] = useState("");
     const [editando, setEditando] = useState(false);
 
     useEffect(() => {
@@ -14,17 +15,18 @@ export const FormularioEstudiante = ({ agregar, estudianteEditar, actualizarEstu
             setNombre(estudianteEditar.nombre);
             setSemestre(estudianteEditar.semestre);
             setFacultad(estudianteEditar.facultad);
+            setPrograma(estudianteEditar.programa);
         }
     }, [estudianteEditar]);
 
     const guardarEstudiante = (event) => {
-        event.preventDefault();
 
         let estudiante = {
             id: id,
             nombre: nombre,
             semestre: semestre,
-            facultad: facultad
+            facultad: facultad,
+            programa: programa
         }
 
         if (editando) {
@@ -38,17 +40,12 @@ export const FormularioEstudiante = ({ agregar, estudianteEditar, actualizarEstu
         setNombre("");
         setSemestre("");
         setFacultad("");
+        setPrograma("");
     }
 
     return (
         <>
-            <form onSubmit={guardarEstudiante}>
-                <div className="form-group ">
-                    <label htmlFor="id">ID Estudiante</label>
-                    <br />
-                    <label htmlFor="id">El ID es único y no se podra editar una vez digitado</label>
-                    <input type="number" className="form-control" id="id" placeholder="Ingrese id" min={"100000"} max={"9999999999"}  required value={id} onChange={(event) => setId(event.target.value)} disabled={editando} />
-                </div>
+            <form onSubmit={guardarEstudiante}>                
                 <div className="form-group">
                     <label htmlFor="nombre">Nombre</label>
                     <input type="text" className="form-control" id="nombre" placeholder="nombre" minlength = "3" value={nombre} required onChange={(event) => setNombre(event.target.value)} />
@@ -81,6 +78,25 @@ export const FormularioEstudiante = ({ agregar, estudianteEditar, actualizarEstu
                         <option value="Derecho">Derecho</option>                        
                 </select>
                 </div>
+                <br />
+                <div>
+                    <label for="programa-select">Programa: </label>
+                    <select class="form-select" name="programa" id="programa-select" required value={programa} onChange={(event) => setPrograma(event.target.value)}>
+                        <option value="">--Seleccione--</option>
+                        <option value="Ingenieria Informática">Ingenieria Informática</option>
+                        <option value="Ingenieria Química">Ingenieria Química</option>
+                        <option value="Ingenieria Mecánica">Ingenieria Mecánica</option>     
+                        <option value="Medicina">Medicina</option>
+                        <option value="Fisioterapia">Fisioterapia</option>       
+                        <option value="Enfermería">Enfermería</option>   
+                        <option value="Comunicación Social">Comunicación Social</option>  
+                        <option value="Comunicación Audiovisual">Comunicación Audiovisual</option>     
+                        <option value="Educacion Ciencias Naturales">Educacion Ciencias Naturales</option> 
+                        <option value="Filosofía">Filosofía</option>      
+                        <option value="Derecho">Derecho</option>                
+                </select>
+                </div>
+
                 
                 <br />
                 <button type="submit" class="btn btn-success">{editando ? "Actualizar" : "Registrar"}</button>
